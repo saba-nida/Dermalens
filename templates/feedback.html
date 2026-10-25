@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermanlens - Feedback Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #16153f;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #00bbcc;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .feedback-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .rating input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .feedback-form input[type="text"],
+        .feedback-form textarea,
+        .feedback-form select,
+        .feedback-form input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .feedback-form button {
+            background-color: #0044cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .feedback-form button:hover {
+            background-color: #0033aa;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            text-align: center;
+        }
+
+        .response-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+        #backtohome{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        button {
+            margin-top: 5px;
+            padding: 12px 6px;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: #006d77;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #00565d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dermanlens Skin Disease Detection - Feedback</h1>
+        <div id="backtohome">
+            <button onclick="location.href='/'" class="navigate-button" >Back to home</button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2>We value your feedback!</h2>
+        <p>Please share your experience with Dermanlens and help us improve.</p>
+
+        <form class="feedback-form" action="submit_feedback.php" method="post" id="feedback-form">
+            
+            <!-- Name and Email Fields -->
+            <div class="section">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+
+            <div class="section">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <!-- Experience Rating -->
+            <div class="section">
+                <label for="experience">How would you rate your overall experience?</label>
+                <div class="rating">
+                    <input type="radio" id="rating5" name="experience" value="5" required> 5 Stars
+                    <input type="radio" id="rating4" name="experience" value="4"> 4 Stars
+                    <input type="radio" id="rating3" name="experience" value="3"> 3 Stars
+                    <input type="radio" id="rating2" name="experience" value="2"> 2 Stars
+                    <input type="radio" id="rating1" name="experience" value="1"> 1 Star
+                </div>
+            </div>
+
+            <!-- Positive Feedback Section -->
+            <div class="section">
+                <label for="positive-feedback">What did you like most about Dermanlens?</label>
+                <textarea id="positive-feedback" name="positive-feedback" rows="4" placeholder="Share your thoughts here..."></textarea>
+            </div>
+
+            <!-- Areas for Improvement -->
+            <div class="section">
+                <label for="improvements">What areas can we improve?</label>
+                <textarea id="improvements" name="improvements" rows="4" placeholder="Your suggestions..."></textarea>
+            </div>
+
+            <!-- Feature Suggestions -->
+            <div class="section">
+                <label for="features">What features would you like to see in future updates?</label>
+                <textarea id="features" name="features" rows="4" placeholder="Any features you would like to see?"></textarea>
+            </div>
+
+            <!-- Issues Encountered -->
+            <div class="section">
+                <label for="issues">Have you encountered any issues? Please describe them:</label>
+                <textarea id="issues" name="issues" rows="4" placeholder="Please describe any issues"></textarea>
+            </div>
+
+            <!-- Likelihood to Recommend -->
+            <div class="section">
+                <label for="recommendation">How likely are you to recommend Dermanlens to others?</label>
+                <select id="recommendation" name="recommendation" required>
+                    <option value="very-likely">Very Likely</option>
+                    <option value="likely">Likely</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="unlikely">Unlikely</option>
+                    <option value="very-unlikely">Very Unlikely</option>
+                </select>
+            </div>
+
+            <!-- Additional Comments -->
+            <div class="section">
+                <label for="additional-comments">Any other comments or suggestions?</label>
+                <textarea id="additional-comments" name="additional-comments" rows="4" placeholder="Your comments here..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-btn">
+                <button type="submit">Submit Feedback</button>
+            </div>
+
+        </form>
+
+        <div class="response-message" id="response-message" style="display: none;">
+            <p>Thank you for your feedback! Your response has been recorded.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Here you would typically use AJAX to submit the form data to your server
+            // After submission, show the response message
+            document.getElementById('response-message').style.display = 'block';
+            document.getElementById('feedback-form').reset();
+        });
+    </script>
+</body>
+</html>

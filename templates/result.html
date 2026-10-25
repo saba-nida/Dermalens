@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+  
+
+</head>
+<body>
+    <button onclick="location.href='/'" class="navigate-button" id="home">Back to home</button>
+    <button onclick="location.href='/dermatologists'" class="navigate-button" id="dermatologist">Find Dermatologists Nearby</button>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="image-container">
+            <h2>Uploaded Image:</h2>
+            <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 300px;">
+        </div>
+        <p><strong>Disease:</strong> {{ class_name }}</p>
+        <p><strong>Confidence:</strong> {{ confidence | round(2) }}%</p>
+        <p><strong>Severity:</strong> {{ severity }}</p>
+
+        <h2>Recommended Articles</h2>
+        <ul>
+            {% for article in articles %}
+            <li><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h2>Recommended Videos</h2>
+        <ul>
+            {% for video in videos %}
+            <li><a href="{{ video.url }}" target="_blank">{{ video.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="/" class="back-button">Predict Another</a>
+    </div>
+    
+</body>
+</html>

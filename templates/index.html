@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaLens - Skin Disease Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+    <div id="feedback">
+        <button onclick="location.href='/feedback'" class="navigate-button">Give Feedback</button>
+    </div>
+    
+    <div class="container">
+        <h1>Welcome to DermaLens</h1>
+        <p class="subtitle">Upload an image to get predictions and insights about skin health.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <div class="error_message">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% elif category == 'success' %}
+                        <div class="success_message">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit" class="upload-button">Predict</button>
+        </form>
+        <button onclick="location.href='/dermatologists'" class="navigate-button">Find Dermatologists Nearby</button>
+    </div>
+</body>
+</html>
+
+

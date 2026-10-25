@@ -1,0 +1,1224 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.gomaps.pro/maps/api/js?key=AlzaSy_KA7dqqVzfkuN8l_Cod-JY66kLMgtIHis&libraries=places"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        input, button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <p>Enter your location or use your current location to search:</p>
+         
+        Add the input and buttons here
+        <input type="text" id="locationInput" placeholder="Enter your area">
+        <button onclick="searchDermatologists()">Find Dermatologists</button>
+        <button onclick="getCurrentLocation()">Use My Location</button>
+
+        <! Map Display -->
+        <!-- <div id="map"></div> -->
+
+        <!-- Results Display -->
+        <!-- <h3>Nearby Dermatologists:</h3>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        // Your JavaScript code for Google Maps API
+        let map, service, infowindow; -->
+
+        <!-- function initMap(lat = 28.6139, lng = 77.2090) { // Default to New Delhi
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            const address = document.getElementById('locationInput').value;
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address }, (results, status) => {
+                if (status === "OK") {
+                    const location = results[0].geometry.location;
+                    map.setCenter(location);
+                    findDermatologists(location);
+                } else {
+                    alert("Geocoding failed: " + status);
+                }
+            });
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location,
+                radius: 3000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        // Initialize map with a default location
+        initMap();
+    </script>
+</body>
+</html> // -->
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.gomaps.pro/maps/api/js?key=AlzaSy_KA7dqqVzfkuN8l_Cod-JY66kLMgtIHis&libraries=places"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        input, button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <p>Enter your location or use your current location to search:</p>
+
+        <!-- Input and buttons -->
+        <!-- <input type="text" id="locationInput" placeholder="Enter your area">
+        <button onclick="searchDermatologists()">Find Dermatologists</button>
+        <button onclick="getCurrentLocation()">Use My Location</button>
+
+        Map Display
+        <div id="map"></div>
+
+        Results Display
+        <h3>Nearby Dermatologists:</h3>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        // Google Maps initialization
+        let map, service, infowindow;
+
+        function initMap(lat = 28.6139, lng = 77.2090) { // Default to New Delhi
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            const address = document.getElementById('locationInput').value;
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address }, (results, status) => {
+                if (status === "OK" && results.length > 0) {
+                    const location = results[0].geometry.location;
+                    map.setCenter(location);
+                    findDermatologists(location);
+                } else {
+                    alert("Geocoding failed: Could not find the location. Please check the entered address or try using a more specific address.");
+                }
+            });
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location. Please enable location services.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location,
+                radius: 10000,  // Search radius of 3km
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        // Initialize map with a default location
+        initMap();
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+</head>
+<body>
+    <h1>Find Dermatologists near me</h1>
+
+    <!-- Static Google Map -->
+    <!-- <div>
+        <h3>Static Map</h3>
+        <img src="{{ map_src }}" alt="Google Map of Bangalore" style="width: 100%; max-width: 800px;">
+    </div>
+
+    <!-- Redirect Button -->
+    <!-- <div style="margin-top: 20px;">
+        <a href="{{ redirect_url }}" target="_blank" style="text-decoration: none; color: white;">
+            <button style="padding: 10px 20px; background-color: #007BFF; border: none; color: white; cursor: pointer;">
+                Search Dermatologists on Google Maps
+            </button>
+        </a>
+    </div>
+</body>
+</html> --> 
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AlzaSy_KA7dqqVzfkuN8l_Cod-JY66kLMgtIHis&libraries=places"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        input, button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: teal;
+            cursor: pointer;
+            transition: background-color 3.5s ease;
+        }
+        button:hover {
+            background-color: darkslategray;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <p>Enter your location or use your current location to search:</p>
+        <input type="text" id="locationInput" placeholder="Enter your area">
+        <button onclick="searchDermatologists()">Find Dermatologists</button>
+        <button onclick="getCurrentLocation()">Use My Location</button>
+        <div id="map"></div>
+        <h3>Nearby Dermatologists:</h3>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        let map, service, infowindow;
+
+        function initMap(lat = 12.9716, lng = 77.5946) { // Default to Bangalore
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            const address = document.getElementById('locationInput').value;
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address }, (results, status) => {
+                if (status === "OK") {
+                    const location = results[0].geometry.location;
+                    map.setCenter(location);
+                    findDermatologists(location);
+                } else {
+                    alert("Geocoding failed: " + status);
+                }
+            });
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location,
+                radius: 5000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+        <div style="margin-top: 20px;">
+            <a href="{{ redirect_url }}" target="_blank" style="text-decoration: none; color: white;">
+                <button style="padding: 10px 20px; background-color: #007BFF; border: none; color: white; cursor: pointer;">
+                    Search Dermatologists on Google Maps
+                </button>
+            </a>
+        </div>
+
+        initMap(); // Initialize map on page load
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AlzaSy_KA7dqqVzfkuN8l_Cod-JY66kLMgtIHis&libraries=places"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        input {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #333;
+            background-color: white;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: teal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkslategray;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .redirect-button {
+            margin-top: 20px;
+        }
+        .redirect-button a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <p>Enter your location or use your current location to search:</p>
+        <input type="text" id="locationInput" placeholder="Enter your area">
+        <button onclick="searchDermatologists()">Find Dermatologists</button>
+        <button onclick="getCurrentLocation()">Use My Location</button>
+        <div id="map"></div>
+        <h3>Nearby Dermatologists:</h3>
+        <ul id="results"></ul>
+        <div class="redirect-button">
+            <a href="{{ redirect_url }}" target="_blank">
+                <button>Search Dermatologists on Google Maps</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let map, service, infowindow;
+
+        function initMap(lat = 12.9716, lng = 77.5946) { // Default to Bangalore
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            const address = document.getElementById('locationInput').value;
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address }, (results, status) => {
+                if (status === "OK") {
+                    const location = results[0].geometry.location;
+                    map.setCenter(location);
+                    findDermatologists(location);
+                } else {
+                    alert("Geocoding failed: " + status);
+                }
+            });
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location,
+                radius: 5000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        initMap(); // Initialize map on page load
+    </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: teal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkslategray;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .redirect-button {
+            margin-top: 20px;
+        }
+        .redirect-button a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <div class="button-group">
+            <button onclick="searchDermatologists()">Search Dermatologists Near Me</button>
+            <button onclick="getCurrentLocation()">Use My Location</button>
+        </div>
+        <div id="map"></div>
+        <h3>Nearby Dermatologists:</h3>
+        <ul id="results"></ul>
+        <div class="redirect-button">
+            <a href="#" target="_blank">
+                <button>Search Dermatologists on Google Maps</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let map, service, infowindow;
+
+        function initMap(lat = 12.9716, lng = 77.5946) { // Default to Bangalore
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location: location,
+                radius: 5000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        initMap(); // Initialize map on page load
+    </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagGTD2QgJ47lMltr4Da3bOcSzPshdBY&libraries=places"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: teal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkslategray;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .redirect-button {
+            margin: 20px 0;
+        }
+        .redirect-button a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <div class="redirect-button">
+            <a href="https://www.google.com/maps/search/dermatologists/" target="_blank">
+                <button>Search Dermatologists on Google Maps</button>
+            </a>
+        </div>
+        <div class="button-group">
+            <button onclick="searchDermatologists()">Search Dermatologists Near Me</button>
+            <button onclick="getCurrentLocation()">Use My Location</button>
+        </div>
+        <div id="map"></div>
+        <h3>Nearby Dermatologists:</h3>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        let map, service, infowindow;
+
+        function initMap(lat = 12.9716, lng = 77.5946) { // Default to Bangalore
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location: location,
+                radius: 5000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        initMap(); // Initialize map on page load
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagGTD2QgJ47lMltr4Da3bOcSzPshdBY&libraries=places"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: teal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkslategray;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .redirect-button {
+            margin: 20px 0;
+        }
+        .redirect-button a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <div class="redirect-button">
+            <a href="https://www.google.com/maps/search/dermatologists/" target="_blank">
+                <button>Search Dermatologists on Google Maps</button>
+            </a>
+        </div>
+        <div id="map"></div>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        let map, service, infowindow;
+
+        function initMap(lat = 12.9716, lng = 77.5946) { // Default to Bangalore
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchDermatologists() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = new google.maps.LatLng(latitude, longitude);
+                        map.setCenter(location);
+                        findDermatologists(location);
+                    },
+                    () => alert("Unable to access location.")
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function findDermatologists(location) {
+            const request = {
+                location: location,
+                radius: 5000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results.forEach((place) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${place.name}</strong><br>${place.vicinity}`;
+                        resultsContainer.appendChild(li);
+                        createMarker(place);
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        initMap(); // Initialize map on page load
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Dermatologists</title>
+    <script src="https://maps.googleapis.com/maps/api/js?AIzaSyDoagGTD2QgJ47lMltr4Da3bOcSzPshdBY&libraries=places"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: teal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkslategray;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .redirect-button {
+            margin: 20px 0;
+        }
+        .redirect-button a {
+            text-decoration: none;
+            color: white;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        .input-group input {
+            padding: 10px;
+            width: calc(100% - 120px);
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Dermatologists Nearby</h1>
+        <div class="redirect-button">
+            <a href="https://www.google.com/maps/search/dermatologists/" target="_blank">
+                <button>Search Dermatologists on Google Maps</button>
+            </a>
+        </div>
+        <div class="input-group">
+            <input type="text" id="location-input" placeholder="Enter your location">
+            <button onclick="searchByLocation()">Find Top 5 Dermatologists</button>
+        </div>
+        <div id="map"></div>
+        <h3>Top 5 Dermatologists:</h3>
+        <ul id="results"></ul>
+    </div>
+
+    <script>
+        let map, service, infowindow;
+
+        function initMap(lat = 12.9716, lng = 77.5946) { // Default to Bangalore
+            const location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+            infowindow = new google.maps.InfoWindow();
+        }
+
+        function searchByLocation() {
+            const address = document.getElementById('location-input').value;
+            if (!address) {
+                alert('Please enter a location.');
+                return;
+            }
+
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address }, (results, status) => {
+                if (status === 'OK') {
+                    const location = results[0].geometry.location;
+                    map.setCenter(location);
+                    findTopDermatologists(location);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        function findTopDermatologists(location) {
+            const request = {
+                location: location,
+                radius: 5000,
+                keyword: "dermatologist",
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    results
+                        .sort((a, b) => (b.rating || 0) - (a.rating || 0)) // Sort by rating
+                        .slice(0, 5) // Get top 5
+                        .forEach((place) => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<strong>${place.name}</strong><br>Rating: ${place.rating || 'N/A'}<br>${place.vicinity}`;
+                            resultsContainer.appendChild(li);
+                            createMarker(place);
+                        });
+                } else {
+                    resultsContainer.innerHTML = "<li>No dermatologists found in the area.</li>";
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+            });
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+                infowindow.open(map, marker);
+            });
+        }
+
+        initMap(); // Initialize map on page load
+    </script>
+</body>
+</html> -->
+

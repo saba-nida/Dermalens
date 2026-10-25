@@ -1,0 +1,31 @@
+
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+env/
+venv/
+
+# Cache files
+*.cache
+*.log
+*.sqlite3
+
+# IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Large file types (optional)
+*.dll
+*.pyd
+*.so
+*.exe

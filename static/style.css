@@ -1,0 +1,196 @@
+/* style.css */
+
+/* General Reset */
+body, h1, h2, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Lora', serif; /* Elegant serif font */
+    background-color: #f4f4f9; /* Light neutral background */
+    color: #333; /* Dark gray text for readability */
+    line-height: 1.6;
+    padding: 30px;
+}
+
+/* Container Styling */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #ffffff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header and Subtitle */
+h1 {
+    font-size: 3rem;
+    color: #006d77; /* Elegant teal blue */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #6c757d; /* Soft gray for subtitle */
+    margin-bottom: 30px;
+}
+
+/* Image and Prediction Section */
+.image-container img {
+    margin: 10px auto;
+    display: block;
+    max-width: 320px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    margin: 5px 0;
+    font-size: 1.2rem; /* Increased font size for disease, confidence, and severity */
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #006d77; /* Teal for section titles */
+    margin-top: 40px; /* Adds space before the section */
+    margin-bottom: 20px; /* Adds space after the section title */
+}
+
+/* Form Styling */
+form {
+    margin-top: 30px;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 12px;
+    border: 2px solid #b8d8d3; /* Soft teal green border */
+    border-radius: 6px;
+    width: 100%;
+    max-width: 350px;
+    background-color: #f0f8f7; /* Very light greenish background */
+    cursor: pointer;
+    transition: border 0.3s;
+}
+
+input[type="file"]:hover {
+    border-color: #006d77; /* Change to teal on hover */
+}
+
+.upload-button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #006d77; /* Teal background */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #004c56; /* Darker teal for hover */
+}
+
+button {
+    margin-top: 5px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #006d77;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #00565d;
+}
+/* Lists (Articles and Videos) */
+ul {
+    list-style: none;
+    margin: 10px 0; /* Reduced space between the list and other sections */
+    padding: 0;
+    text-align: center; /* Center-align the links */
+}
+
+ul li {
+    margin: 3px 0; /* Reduced space between list items */
+}
+
+ul li a {
+    text-decoration: underline; /* Underlined links */
+    color: #0066cc; /* Blue color for links */
+    font-weight: bold;
+    font-size: 1rem; /* Smaller font size for links */
+    transition: color 0.3s;
+}
+
+ul li a:hover {
+    color: #28a745; /* Green color on hover */
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #6c757d; /* Gray for back button */
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #5a636a; /* Darker gray on hover */
+}
+
+#feedback{
+    position: absolute;
+    right: 50px;
+}
+
+#home{
+    position: absolute;
+    left: 50px;
+}
+
+#dermatologist{
+    position: absolute;
+    right: 40px;
+}
+
+.error_message {
+    background-color: #f44336; /* Red background */
+    color: white;
+    padding: 16px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Success message style */
+.success_message {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 16px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 5px;
+    font-size: 16px;
+}
