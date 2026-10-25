@@ -79,7 +79,7 @@ def prepare_image(image_path):
 def get_real_resources(disease_name):
     """Fetch real articles and videos for the disease."""
     # YouTube Data API setup
-    YOUTUBE_API_KEY = "AIzaSyD26D3_-9OXx3BdCRPVdDA4oxQtY6E9ZuE"
+    YOUTUBE_API_KEY = "Your-ID"
     youtube_url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={disease_name}&type=video&key={YOUTUBE_API_KEY}"
     youtube_response = requests.get(youtube_url)
     youtube_videos = youtube_response.json().get('items', [])
@@ -89,8 +89,8 @@ def get_real_resources(disease_name):
     ]
 
     # Google Custom Search API setup
-    GOOGLE_API_KEY = "AIzaSyD26D3_-9OXx3BdCRPVdDA4oxQtY6E9ZuE"
-    SEARCH_ENGINE_ID = "d2d85d260d4f64b9c"
+    GOOGLE_API_KEY = "Your-key"
+    SEARCH_ENGINE_ID = "Your-ID"
     search_url = f"https://www.googleapis.com/customsearch/v1?q={disease_name}&cx={SEARCH_ENGINE_ID}&key={GOOGLE_API_KEY}"
     google_response = requests.get(search_url)
     search_results = google_response.json().get('items', [])
